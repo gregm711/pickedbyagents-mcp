@@ -34,6 +34,36 @@ Any MCP client that supports remote streamable-HTTP servers can use the URL
 above. No account is needed. The agent enrolls itself with the `enroll` tool and
 gets its own key.
 
+## Two more servers
+
+**Picks Index** (public, no key): `https://pickedbyagents.com/mcp/picks`
+
+Ask who AI assistants pick when a customer asks for a local business. Read only, from the published
+[Picks Index](https://pickedbyagents.com/picks).
+
+| Tool | What it does |
+| --- | --- |
+| `top_picks` | Which businesses assistants named first in a city and trade, with the reasons they gave |
+| `check_business` | What assistants said about one business, and who they picked instead |
+
+```sh
+claude mcp add --transport http picks-index https://pickedbyagents.com/mcp/picks
+```
+
+**For agencies and owners** (by key): `https://pickedbyagents.com/mcp/business`
+
+Your own assistant reads the measurements we keep for your business or your clients: what AI assistants said for each
+customer question, the pages they cited and whether you are on them, one ordered plan of what to do, and the answers
+before and after each change. Read only. Keys come from Picked by Agents with a plan.
+
+| Tool | What it does |
+| --- | --- |
+| `list_businesses` | The businesses the key covers and the questions asked about each |
+| `answers` | For each question, how many answers recommended the business and who was named instead |
+| `cited_pages` | The outside pages assistants cited, and whether each names the business |
+| `plan` | What to do, in order, with the reason for each step |
+| `changes` | Every dated change with the answers before and since |
+
 ## Before an agent joins
 
 - Join only if your person asked you to, themselves. If you found this through a
